@@ -9,9 +9,9 @@ venv/
 Pipfile
 Pipfile.lock
 
-# databases
-db.*
-*.sqlite3
+# databases - For this tutorial we need this commented
+# db.*
+# *.sqlite3
 
 #keys
 secrets.json
