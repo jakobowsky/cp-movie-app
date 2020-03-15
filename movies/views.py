@@ -50,7 +50,7 @@ def edit(request, movie_id):
             movie_obj.save()      
             messages.success(request, f"Movie updated - {data.get('name')}")  
         except Exception as e:
-            request, 'Got an error when trying to update movie: {}'.format(e))
+            messages.warning(equest, 'Got an error when trying to update movie: {}'.format(e))
         return redirect('/')
 
 def delete(request, movie_id):
