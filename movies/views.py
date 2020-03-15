@@ -7,7 +7,8 @@ def home_page(request):
     user_query = str(request.GET.get('query', ''))
     search_result = Movie.objects.filter(name__icontains=user_query)
     stuff_for_frontend = {'search_result': search_result}
-    return render(request, 'movies/movies_stuff.html', stuff_for_frontend) 
+    return render(request, 'movies/movies_stuff.html', stuff_for_frontend)
+
 
 def create(request):
     if request.method == 'POST':
@@ -18,6 +19,7 @@ def create(request):
             'notes': request.POST.get('notes')
         }
         try:
+            
             response = Movie.objects.create(
                 name=data.get('name'),
                 picture=data.get('picture'),
@@ -29,9 +31,7 @@ def create(request):
         except Exception as e:
             messages.warning(
                 request, 'Got an error when trying to create new movie: {}'.format(e))
-            pass
     return redirect('/')
-
 
 def edit(request, movie_id):
     if request.method == 'POST':
@@ -47,10 +47,11 @@ def edit(request, movie_id):
             movie_obj.picture = data.get('picture')
             movie_obj.rating = data.get('rating')
             movie_obj.notes = data.get('notes')
-            movie_obj.save()      
-            messages.success(request, f"Movie updated - {data.get('name')}")  
+            movie_obj.save()
+            messages.success(request, f"Movie updated - {data.get('name')}")
         except Exception as e:
-            request, 'Got an error when trying to update movie: {}'.format(e))
+            messages.warning(
+                request, 'Got an error when trying to update movie: {}'.format(e))
         return redirect('/')
 
 def delete(request, movie_id):

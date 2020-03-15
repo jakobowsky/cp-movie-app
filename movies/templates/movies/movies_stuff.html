@@ -30,14 +30,13 @@
                         </div>
 
                         <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-create">Create</button>
-
-                    </div>
+    				</div>
     			</div>
     		</nav>
 
             <section class="result">
             	<div class="container">
-                    
+
                     <!-- Show notifications (if any) -->
                     {% if messages %}
                     	{% for message in messages %}
@@ -48,18 +47,20 @@
                     	{% endfor %}
                     {% endif %}
 
+                    <!-- Show all movies -->
             		<div class="movies">
             			{% for movie in search_result %}
                             <div class="movies__item">
                                 <i class="movies__item-star fa fa-star hide"></i>
                                 <p class="movies__item-rating hide">{{ movie.rating }}/10</p>
                                 <button type="button" class="movies__item-expander hide" data-toggle="modal" data-target="#modal-{{movie.id}}">View Details</button>
-                            	<img class="movies__item-image" src="{{ movie.picture }}" alt="" />
+                            	<img class="movies__item-image" src="{{ movie.picture}}" alt="" />
                                 <div class="movies__item-title">
                                 	<p>{{ movie.name }}</p>
                                 </div>
                             </div>
-                            {% include 'movies/detail-modal.html' %}
+
+                        	{% include 'movies/detail-modal.html' %}
                             {% include 'movies/edit-modal.html' %}
                         {% endfor %}
             		</div>
@@ -68,6 +69,7 @@
     	</div>
 
         {% include "movies/create-modal.html" %}
+
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
