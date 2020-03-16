@@ -21,4 +21,4 @@ pip3 install -r requirements.txt
 ./mange.py migrate
 ./mange.py runserver
 ```
-### Go and check for endpoints `http://127.0.0.1:8000/`
+### Go and check `http://127.0.0.1:8000/`
